@@ -1,6 +1,5 @@
 import torch
 
-
 def B_batch(x, grid, k=0, extend=True, device='cpu'):
     '''
     evaludate x on B-spline bases
@@ -16,12 +15,12 @@ def B_batch(x, grid, k=0, extend=True, device='cpu'):
         extend : bool
             If True, k points are extended on both ends. If False, no extension (zero boundary condition). Default: True
         device : str
-            devicde
+            device
     
     Returns:
     --------
         spline values : 3D torch.tensor
-            shape (number of splines, number of B-spline bases (coeffcients), number of samples). The numbef of B-spline bases = number of grid points + k - 1.
+            shape (number of splines, number of B-spline bases (coefficients), number of samples). The number of B-spline bases = number of grid points + k - 1.
       
     Example
     -------
@@ -77,7 +76,7 @@ def coef2curve(x_eval, grid, coef, k, device="cpu"):
         k : int
             the piecewise polynomial order of splines.
         device : str
-            devicde
+            device
         
     Returns:
     --------
@@ -119,7 +118,7 @@ def curve2coef(x_eval, y_eval, grid, k, device="cpu"):
         k : int
             the piecewise polynomial order of splines.
         device : str
-            devicde
+            device
         
     Example
     -------
