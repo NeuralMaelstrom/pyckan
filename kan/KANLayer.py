@@ -8,7 +8,6 @@ class KANLayer(nn.Module):
     """
     KANLayer class
     
-
     Attributes:
     -----------
         in_dim: int
@@ -28,7 +27,7 @@ class KANLayer(nn.Module):
         scale_base: 1D torch.float
             magnitude of the residual function b(x)
         scale_sp: 1D torch.float
-            mangitude of the spline function spline(x)
+            magnitude of the spline function spline(x)
         base_fun: fun
             residual function b(x)
         mask: 1D torch.float
@@ -62,7 +61,7 @@ class KANLayer(nn.Module):
             unlock already locked activation functions
     """
 
-    def __init__(self, in_dim=3, out_dim=2, num=5, k=3, noise_scale=0.1, scale_base=1.0, scale_sp=1.0, base_fun=torch.nn.SiLU(), grid_eps=0.02, grid_range=[-1, 1], sp_trainable=True, sb_trainable=True, device='cpu'):
+    def __init__(self, in_dim=3, out_dim=2, num=5, k=3, noise_scale=0.1, scale_base=1.0, scale_sp=1.0, base_fun=torch.nn.ReLU(), grid_eps=0.02, grid_range=[-1, 1], sp_trainable=True, sb_trainable=True, device='cpu'):
         ''''
         initialize a KANLayer
         
@@ -83,7 +82,7 @@ class KANLayer(nn.Module):
             scale_sp : float
                 the scale of the base function spline(x). Default: 1.0.
             base_fun : function
-                residual function b(x). Default: torch.nn.SiLU()
+                residual function b(x). Default: torch.nn.ReLU()
             grid_eps : float
                 When grid_eps = 0, the grid is uniform; when grid_eps = 1, the grid is partitioned using percentiles of samples. 0 < grid_eps < 1 interpolates between the two extremes. Default: 0.02.
             grid_range : list/np.array of shape (2,)
@@ -148,7 +147,7 @@ class KANLayer(nn.Module):
             y : 2D torch.float
                 outputs, shape (number of samples, output dimension)
             preacts : 3D torch.float
-                fan out x into activations, shape (number of sampels, output dimension, input dimension)
+                fan out x into activations, shape (number of samples, output dimension, input dimension)
             postacts : 3D torch.float
                 the outputs of activation functions with preacts as inputs
             postspline : 3D torch.float
