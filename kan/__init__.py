@@ -1,1 +1,1 @@
-from .KAN import *
+from KAN import *
